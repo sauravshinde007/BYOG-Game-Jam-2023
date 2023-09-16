@@ -9,8 +9,8 @@ require("Player")
 player=Player()
 
 -------------------WIndow Defination--------------
-window_width=1280
-window_height=720
+window_width=1260
+window_height=400
 
 
 ----------------------Love Function-----------------------------------
@@ -20,7 +20,7 @@ function love.load()
     -- world=wf.newWorld(0,0)
 
     love.window.setMode(window_width,window_height)
-    bg_img=love.graphics.newImage("sprites/pngegg.png")
+    -- bg_img=love.graphics.newImage("sprites/pngegg.png")
     player:init(100,500)
 
     --state of the game
@@ -42,10 +42,10 @@ function love.update(dt)
 
     else if state=="Level 1"  then
         player:update(dt)
-        cam:lookAt(player.playerx,player.playery)    
+        cam:lookAt(player.playerx,player.playery)
     
     end
-    
+   
 end
 
 end
@@ -54,15 +54,17 @@ end
 
 function love.draw()
    
+  
     if state=="MainMenu" then
-        gamemap:draw()
+
 
     elseif state=="Level 1" then
         cam:attach()
-        love.graphics.draw(bg_img)
-        player:draw()
+            gamemap:drawLayer(gamemap.layers["Border"])
+            gamemap:drawLayer(gamemap.layers["Ground"])
+            gamemap:drawLayer(gamemap.layers["Objects"])
+            player:draw()
         cam:detach()
-
         
     end
    
