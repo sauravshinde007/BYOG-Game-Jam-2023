@@ -65,5 +65,5 @@ function Player:update(dt)
 end
 
 function Player:draw()
-    self.animation:draw(self.player_img,self.playerx,self.playery,0,2,2)
+    self.animation:draw(self.player_img,self.playerx,self.playery,0,2,2,32,32)
 end
