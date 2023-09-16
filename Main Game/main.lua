@@ -3,19 +3,23 @@ anim=require("libraries/anim8")
 camera=require("libraries/camera")
 
 wf=require("libraries/windfield")
-sti = require("libraries/sti")
+
 require("Player")
 
 player=Player()
 
 -------------------WIndow Defination--------------
-window_width=1260
-window_height=400
+window_width=1280
+window_height=720
 
+--variable to store player's input
+playerInput=""
+
+--correct answer
+correctInput="hello"
 
 ----------------------Love Function-----------------------------------
 function love.load()
-    gamemap=sti("maps/background1.lua")
     cam=camera()
     -- world=wf.newWorld(0,0)
 
@@ -43,27 +47,52 @@ function love.update(dt)
     elseif state=="Level 1"  then
         player:update(dt)
         cam:lookAt(player.playerx,player.playery)
+
+        --stoping camera 
+
+        --upper right
+        if cam.x<window_width/2 then
+            cam.x=window_width/2
+            
+        end
+
+        --upper left
+        if cam.y<window_height/2 then
+            cam.y=window_height/2
+            
+        end
+
+    else if state=="Puzzle1"  then
+
+        love.graphics.print("Decode the secret language :",100,100)
+        love.graphics.print("")
+
+        
     
     end
-   
+
+end
+
 end
 print("hello")
 
 ----------------------Love Draw-----------------------------------
 
 function love.draw()
-   
-  
+
+
     if state=="MainMenu" then
 
 
     elseif state=="Level 1" then
         cam:attach()
-            gamemap:drawLayer(gamemap.layers["Border"])
-            gamemap:drawLayer(gamemap.layers["Ground"])
-            gamemap:drawLayer(gamemap.layers["Objects"])
+            -- love.graphics.rectangle(mode,x,y,width,height)
+            love.graphics.setColor(1,1,1)
+            love.graphics.rectangle("fill",0,0,window_width,window_height)
+            -- love.graphics.draw(bg_img)
             player:draw()
         cam:detach()
+
         
     end
    
