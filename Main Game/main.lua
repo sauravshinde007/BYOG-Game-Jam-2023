@@ -42,6 +42,22 @@ function love.update(dt)
     else if state=="Level 1"  then
         player:update(dt)
         cam:lookAt(player.playerx,player.playery)
+
+        --stoping camera 
+
+        --upper right
+        if cam.x<window_width/2 then
+            cam.x=window_width/2
+            
+        end
+
+        --upper left
+        if cam.y<window_height/2 then
+            cam.y=window_height/2
+            
+        end
+
+        
         
     
     end
@@ -60,7 +76,9 @@ function love.draw()
 
     elseif state=="Level 1" then
         cam:attach()
-
+            -- love.graphics.rectangle(mode,x,y,width,height)
+            love.graphics.setColor(1,1,1)
+            love.graphics.rectangle("fill",0,0,window_width,window_height)
             -- love.graphics.draw(bg_img)
             player:draw()
         cam:detach()
