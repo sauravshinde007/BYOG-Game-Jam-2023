@@ -22,6 +22,8 @@ correctInput="hello"
 function love.load()
     cam=camera()
     gameMap=sti("maps/mainlevel.lua")
+
+
     -- world=wf.newWorld(0,0)
 
     love.window.setMode(window_width,window_height)
@@ -87,13 +89,23 @@ function love.draw()
 
     elseif state=="Level 1" then
         cam:attach()
+
+            love.graphics.push()
+
+            --will scale the map
+            love.graphics.scale(4)
+
             -- -- love.graphics.rectangle(mode,x,y,width,height)
             -- love.graphics.setColor(1,1,1)
             -- love.graphics.rectangle("fill",0,0,window_width,window_height)
             -- -- love.graphics.draw(bg_img)
             gameMap:drawLayer(gameMap.layers["Ground"])
             gameMap:drawLayer(gameMap.layers["Path"])
+
+            love.graphics.pop()
             player:draw()
+
+            
         cam:detach()
 
         
