@@ -19,7 +19,7 @@ function love.load()
     -- world=wf.newWorld(0,0)
 
     love.window.setMode(window_width,window_height)
-    bg_img=love.graphics.newImage("sprites/pngegg.png")
+    -- bg_img=love.graphics.newImage("sprites/pngegg.png")
     player:init(100,500)
 
     --state of the game
@@ -40,11 +40,12 @@ function love.update(dt)
         end
 
     else if state=="Level 1"  then
+        player:update(dt)
+        cam:lookAt(player.playerx,player.playery)
         
     
     end
-    player:update(dt)
-    cam:lookAt(player.playerx,player.playery)
+
 end
 
 end
@@ -52,16 +53,18 @@ end
 ----------------------Love Draw-----------------------------------
 
 function love.draw()
-    cam:attach()
-        love.graphics.draw(bg_img)
-        player:draw()
-    cam:detach()
+
 
     if state=="MainMenu" then
 
 
     elseif state=="Level 1" then
-        player:draw()
+        cam:attach()
+
+            -- love.graphics.draw(bg_img)
+            player:draw()
+        cam:detach()
+
         
     end
    
