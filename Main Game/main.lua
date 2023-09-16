@@ -19,10 +19,10 @@ function love.load()
     -- world=wf.newWorld(0,0)
 
     love.window.setMode(window_width,window_height)
-    -- bg_img=love.graphics.newImage("sprites/pngegg.png")
+    bg_img=love.graphics.newImage("sprites/pngegg.png")
     player:init(100,500)
     font=love.graphics.newFont(35)
-    menu=love.graphics.newImage("C:/BYOG/mainmenu.png")
+    menu=love.graphics.newImage("assets/mainmenu.png")
     --state of the game
     state="MainMenu"
 end
@@ -39,7 +39,7 @@ function love.update(dt)
             
         end
 
-    else if state=="Level 1"  then
+    elseif state=="Level 1"  then
         
     
     end
@@ -56,19 +56,21 @@ end
 ----------------------Love Draw-----------------------------------
 
 function love.draw()
-    cam:attach()
-        love.graphics.draw(bg_img)
-        player:draw()
-    cam:detach()
 
+    
+    love.graphics.setFont(font)
     if state=="MainMenu" then
-        love.graphics.draw("menu",0,0) 
-        
-      
+        love.graphics.draw(menu,0,0) 
         love.graphics.print("Press enter to play",(window_width-200)/2,500)    
     elseif state=="Level 1" then
-        player:draw()
+        cam:attach()
+            love.graphics.draw(bg_img)
+            player:draw()
+        cam:detach()
         
+    elseif state=="game-over" then
+        love.graphics.print("Game-over",(window_width-200)/2,500)  
+        love.graphics.print("Press R to retry",(window_width-200)/2,550)  
     end
     
 end
