@@ -3,7 +3,7 @@ anim=require("libraries/anim8")
 camera=require("libraries/camera")
 
 wf=require("libraries/windfield")
-
+sti = require("libraries/sti")
 require("Player")
 
 player=Player()
@@ -15,6 +15,7 @@ window_height=720
 
 ----------------------Love Function-----------------------------------
 function love.load()
+    gamemap=sti("maps/background1.lua")
     cam=camera()
     -- world=wf.newWorld(0,0)
 
@@ -40,11 +41,11 @@ function love.update(dt)
         end
 
     else if state=="Level 1"  then
-        
+        player:update(dt)
+        cam:lookAt(player.playerx,player.playery)    
     
     end
-    player:update(dt)
-    cam:lookAt(player.playerx,player.playery)
+    
 end
 
 end
@@ -52,16 +53,16 @@ end
 ----------------------Love Draw-----------------------------------
 
 function love.draw()
-    cam:attach()
-        love.graphics.draw(bg_img)
-        player:draw()
-    cam:detach()
-
+   
     if state=="MainMenu" then
-
+        gamemap:draw()
 
     elseif state=="Level 1" then
+        cam:attach()
+        love.graphics.draw(bg_img)
         player:draw()
+        cam:detach()
+
         
     end
    
