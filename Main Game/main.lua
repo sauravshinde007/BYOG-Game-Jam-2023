@@ -43,7 +43,6 @@ function love.update(dt)
     else if state=="Level 1"  then
         player:update(dt)
         cam:lookAt(player.playerx,player.playery)
-        
     
     end
    
@@ -61,8 +60,9 @@ function love.draw()
 
     elseif state=="Level 1" then
         cam:attach()
-
-            -- love.graphics.draw(bg_img)
+            gamemap:drawLayer(gamemap.layers["Border"])
+            gamemap:drawLayer(gamemap.layers["Ground"])
+            gamemap:drawLayer(gamemap.layers["Objects"])
             player:draw()
         cam:detach()
         
