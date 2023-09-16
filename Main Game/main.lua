@@ -5,7 +5,7 @@ camera=require("libraries/camera")
 wf=require("libraries/windfield")
 
 require("Player")
-
+sti = require("libraries/sti")
 player=Player()
 
 -------------------WIndow Defination--------------
@@ -21,6 +21,7 @@ correctInput="hello"
 ----------------------Love Function-----------------------------------
 function love.load()
     cam=camera()
+    gameMap=sti("maps/mainlevel.lua")
     -- world=wf.newWorld(0,0)
 
     love.window.setMode(window_width,window_height)
@@ -74,7 +75,7 @@ function love.update(dt)
 end
 
 end
-print("hello")
+
 
 ----------------------Love Draw-----------------------------------
 
@@ -86,10 +87,12 @@ function love.draw()
 
     elseif state=="Level 1" then
         cam:attach()
-            -- love.graphics.rectangle(mode,x,y,width,height)
-            love.graphics.setColor(1,1,1)
-            love.graphics.rectangle("fill",0,0,window_width,window_height)
-            -- love.graphics.draw(bg_img)
+            -- -- love.graphics.rectangle(mode,x,y,width,height)
+            -- love.graphics.setColor(1,1,1)
+            -- love.graphics.rectangle("fill",0,0,window_width,window_height)
+            -- -- love.graphics.draw(bg_img)
+            gameMap:drawLayer(gameMap.layers["Ground"])
+            gameMap:drawLayer(gameMap.layers["Path"])
             player:draw()
         cam:detach()
 
