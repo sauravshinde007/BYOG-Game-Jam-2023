@@ -1,6 +1,9 @@
 Class=require("libraries/class")
 anim=require("libraries/anim8")
 camera=require("libraries/camera")
+
+wf=require("libraries/windfield")
+
 require("Player")
 
 player=Player()
@@ -13,10 +16,10 @@ window_height=720
 ----------------------Love Function-----------------------------------
 function love.load()
     cam=camera()
-    
+    -- world=wf.newWorld(0,0)
 
     love.window.setMode(window_width,window_height)
-    bg_img=love.graphics.newImage("sprites/pngegg.png")
+    -- bg_img=love.graphics.newImage("sprites/pngegg.png")
     player:init(100,500)
     font=love.graphics.newFont(35)
     menu=love.graphics.newImage("C:/BYOG/mainmenu.png")
@@ -36,11 +39,9 @@ function love.update(dt)
             
         end
 
-    elseif state=="Level 1"  then    
-    elseif state=="game-over" then
-          if love.keyboard.isDown("r") then
-            state="MainMenu"
-          end  
+    else if state=="Level 1"  then
+        
+    
     end
     player:update(dt)
     cam:lookAt(player.playerx,player.playery)
@@ -55,7 +56,10 @@ end
 ----------------------Love Draw-----------------------------------
 
 function love.draw()
-    love.graphics.setFont(font)
+    cam:attach()
+        love.graphics.draw(bg_img)
+        player:draw()
+    cam:detach()
 
     if state=="MainMenu" then
         love.graphics.draw("menu",0,0) 
@@ -63,14 +67,8 @@ function love.draw()
       
         love.graphics.print("Press enter to play",(window_width-200)/2,500)    
     elseif state=="Level 1" then
-        
-        cam:attach()
-        love.graphics.draw(bg_img)
         player:draw()
-        cam:detach()
-    elseif state=="game-over" then
-        love.graphics.print("Game over",(window_width-200)/2,500)
-        love.graphics.print("Press R to retry",(window_width-200)/2,550)
+        
     end
     
 end
