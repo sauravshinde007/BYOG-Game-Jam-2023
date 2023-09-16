@@ -1,8 +1,10 @@
 Class=require("libraries/class")
 anim=require("libraries/anim8")
 camera=require("libraries/camera")
-require("Player")
 
+wf=require("libraries/windfield")
+
+require("Player")
 player=Player()
 
 -------------------WIndow Defination--------------
@@ -13,7 +15,7 @@ window_height=720
 ----------------------Love Function-----------------------------------
 function love.load()
     cam=camera()
-    
+    -- world=wf.newWorld(0,0)
 
     love.window.setMode(window_width,window_height)
     bg_img=love.graphics.newImage("sprites/pngegg.png")
@@ -37,11 +39,12 @@ function love.update(dt)
         end
 
     else if state=="Level 1"  then
-        
+        player:update(dt)
+        -- world:update(dt)
+        cam:lookAt(player.playerx,player.playery)
     
     end
-    player:update(dt)
-    cam:lookAt(player.playerx,player.playery)
+    
 end
 
 end
@@ -49,16 +52,17 @@ end
 ----------------------Love Draw-----------------------------------
 
 function love.draw()
-    cam:attach()
-        love.graphics.draw(bg_img)
-        player:draw()
-    cam:detach()
-
+    
     if state=="MainMenu" then
 
 
     elseif state=="Level 1" then
+        cam:attach()
+        love.graphics.draw(bg_img)
         player:draw()
+        -- world:draw()
+        cam:detach()
+
         
     end
    
