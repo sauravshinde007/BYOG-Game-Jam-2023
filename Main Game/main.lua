@@ -25,7 +25,7 @@ function love.load()
 
 
     world=wf.newWorld(0,0)
-    player.collider=world:newBSGRectangleCollider(10,10,15,32,10)
+    player.collider=world:newBSGRectangleCollider(10,10,10,14,10)
     player.collider:setFixedRotation(true)
   
     love.window.setMode(window_width,window_height)
@@ -121,7 +121,7 @@ function love.draw()
             gameMap:drawLayer(gameMap.layers["Ground"])
             gameMap:drawLayer(gameMap.layers["Path"])
             -- love.graphics.pop()
-            world:draw()
+            -- world:draw()
             player:draw()
 
             

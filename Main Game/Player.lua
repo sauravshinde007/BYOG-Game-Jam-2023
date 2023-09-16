@@ -3,7 +3,7 @@ function Player:init(playerx,playery)
     
     self.playerx=playerx
     self.playery=playery
-    self.speed=100
+    self.speed=50
     
     
     self.player_img=love.graphics.newImage("sprites/Player.png")
@@ -74,6 +74,6 @@ end
 
 function Player:draw()
 
-    self.animation:draw(self.player_img,self.playerx,self.playery,0,0.7,0.7,32,32)
+    self.animation:draw(self.player_img,self.playerx,self.playery,0,0.5,0.5,32,32)
     
 end
