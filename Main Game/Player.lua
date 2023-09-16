@@ -29,7 +29,7 @@ function Player:update(dt)
    self.animation:update(dt)
    self.vx=0
    self.vy=0
-    if love.keyboard.isDown('w') and self.playery>0 then
+    if love.keyboard.isDown('w') then
         self.vy=self.speed*-1
         self.animation=self.animations.uprun
         counter=1
@@ -39,7 +39,7 @@ function Player:update(dt)
     
         end
     end
-    if love.keyboard.isDown('s') and self.playery<window_height-65 then
+    if love.keyboard.isDown('s')  then
         self.vy=self.speed
         self.playery=self.playery+100*dt
         self.animation=self.animations.downrun
@@ -49,7 +49,7 @@ function Player:update(dt)
             self.animation=self.animations.downidle
         end
     end
-    if love.keyboard.isDown('a') and self.playerx>0 then
+    if love.keyboard.isDown('a')  then
         self.vx=self.speed*-1
         self.animation=self.animations.leftrun
         counter=3
@@ -59,7 +59,7 @@ function Player:update(dt)
         end
     end
 
-    if love.keyboard.isDown('d') and self.playerx<window_width-30 then
+    if love.keyboard.isDown('d') then
         self.vx=self.speed
         self.animation=self.animations.rightrun
         counter=4
