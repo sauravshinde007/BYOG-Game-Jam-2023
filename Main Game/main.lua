@@ -2,6 +2,8 @@ Class=require("libraries/class")
 anim=require("libraries/anim8")
 camera=require("libraries/camera")
 require("Player")
+-- sti= require'libraries/sti'
+-- gameMap=sti('maps/background1..lua')
 
 player=Player()
 
@@ -57,8 +59,9 @@ function love.draw()
 
     elseif state=="Level 1" then
         cam:attach()
-        love.graphics.draw(bg_img)
-        player:draw()
+        -- gameMap:drawLayer(gameMap.layers["ground"])
+            love.graphics.draw(bg_img)
+            player:draw()
         cam:detach()
        
         
