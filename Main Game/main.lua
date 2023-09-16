@@ -40,15 +40,14 @@ function love.update(dt)
             
         end
 
-    else if state=="Level 1"  then
+    elseif state=="Level 1"  then
         player:update(dt)
         cam:lookAt(player.playerx,player.playery)
     
     end
    
 end
-
-end
+print("hello")
 
 ----------------------Love Draw-----------------------------------
 
