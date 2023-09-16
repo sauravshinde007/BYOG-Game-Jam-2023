@@ -17,21 +17,34 @@ playerInput=""
 
 --correct answer
 correctInput="hello"
-
 ----------------------Love Function-----------------------------------
 function love.load()
-    cam=camera()
+    cam=camera(0,0,3)
+   
     gameMap=sti("maps/mainlevel.lua")
 
 
-    -- world=wf.newWorld(0,0)
-
+    world=wf.newWorld(0,0)
+    player.collider=world:newBSGRectangleCollider(10,10,15,32,10)
+    player.collider:setFixedRotation(true)
+  
     love.window.setMode(window_width,window_height)
-    -- bg_img=love.graphics.newImage("sprites/pngegg.png")
-    player:init(100,500)
+    
+    player:init(10,10)
 
     --state of the game
     state="MainMenu"
+    
+    items={}
+    if gameMap.layers["Items"] then
+        for i,obj in pairs(gameMap.layers["Items"].objects) do
+            local item=world:newRectangleCollider(obj.x,obj.y,obj.width,obj.height)
+            item:setType("static")
+            table.insert( items,item)
+        end
+    end
+   
+    
 
 end
 
@@ -54,17 +67,21 @@ function love.update(dt)
         --stoping camera 
 
         --upper right
-        if cam.x<window_width/2 then
-            cam.x=window_width/2
+        -- if cam.x<window_width/2 then
+        --     cam.x=window_width/2
             
-        end
+        -- end
 
-        --upper left
-        if cam.y<window_height/2 then
-            cam.y=window_height/2
+        -- --upper left
+        -- if cam.y<window_height/2 then
+        --     cam.y=window_height/2
             
-        end
-
+        -- end
+        player.collider:setLinearVelocity(player.vx,player.vy)
+      
+        player.playerx=player.collider:getX()
+        player.playery=player.collider:getY()
+        world:update(dt)
     else if state=="Puzzle1"  then
 
         love.graphics.print("Decode the secret language :",100,100)
@@ -82,27 +99,29 @@ end
 ----------------------Love Draw-----------------------------------
 
 function love.draw()
-
+    
 
     if state=="MainMenu" then
 
 
     elseif state=="Level 1" then
         cam:attach()
+            
+            -- love.graphics.push()
 
-            love.graphics.push()
-
-            --will scale the map
-            love.graphics.scale(4)
+            -- --will scale the map
+            -- love.graphics.scale(4)
 
             -- -- love.graphics.rectangle(mode,x,y,width,height)
             -- love.graphics.setColor(1,1,1)
             -- love.graphics.rectangle("fill",0,0,window_width,window_height)
             -- -- love.graphics.draw(bg_img)
+           
+            --cam:zoomTo(2)
             gameMap:drawLayer(gameMap.layers["Ground"])
             gameMap:drawLayer(gameMap.layers["Path"])
-
-            love.graphics.pop()
+            -- love.graphics.pop()
+            world:draw()
             player:draw()
 
             

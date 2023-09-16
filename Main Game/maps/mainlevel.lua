@@ -245,7 +245,7 @@ return {
       type = "objectgroup",
       draworder = "topdown",
       id = 4,
-      name = "items",
+      name = "Items",
       class = "",
       visible = true,
       opacity = 1,

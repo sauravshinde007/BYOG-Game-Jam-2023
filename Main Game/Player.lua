@@ -1,11 +1,11 @@
 Player=Class{}
 function Player:init(playerx,playery)
-    self.world=wf.newWorld(0,0)
+    
     self.playerx=playerx
     self.playery=playery
     self.speed=100
-    self.collider=self.world:newBSGRectangleCollider(100,500,30,65,10)
-    self.collider:setFixedRotation(true)
+    
+    
     self.player_img=love.graphics.newImage("sprites/Player.png")
     local grid=anim.newGrid(64,64,self.player_img:getWidth(),self.player_img:getHeight())
     self.animations={}
@@ -68,15 +68,12 @@ function Player:update(dt)
             self.animation=self.animations.rightidle
         end
     end
-    self.collider:setLinearVelocity(self.vx,self.vy)
-    self.world:update(dt)
-    self.playerx=self.collider:getX()
-    self.playery=self.collider:getY()
+   
 
 end
 
 function Player:draw()
 
-    self.animation:draw(self.player_img,self.playerx,self.playery,0,2,2,32,32)
-    self.world:draw()
+    self.animation:draw(self.player_img,self.playerx,self.playery,0,0.7,0.7,32,32)
+    
 end
