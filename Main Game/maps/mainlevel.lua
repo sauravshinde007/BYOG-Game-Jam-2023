@@ -10,7 +10,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 6,
-  nextobjectid = 32,
+  nextobjectid = 34,
   properties = {},
   tilesets = {
     {
@@ -566,6 +566,32 @@ return {
           rotation = 0,
           visible = true,
           properties = {}
+        },
+        {
+          id = 32,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = -9.66667,
+          y = 31.6667,
+          width = 9,
+          height = 226.667,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 33,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 481,
+          y = 63.6667,
+          width = 16,
+          height = 210.333,
+          rotation = 0,
+          visible = true,
+          properties = {}
         }
       }
     },
@@ -604,7 +630,7 @@ return {
           x = 240.5,
           y = 63,
           width = 16,
-          height = 17.5,
+          height = 7.83333,
           rotation = 0,
           visible = true,
           properties = {}
@@ -617,7 +643,7 @@ return {
           x = 367.5,
           y = 44.5,
           width = 16.5,
-          height = 35,
+          height = 17,
           rotation = 0,
           visible = true,
           properties = {}
@@ -627,9 +653,9 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 463,
+          x = 470.333,
           y = 80,
-          width = 16.5,
+          width = 9.16667,
           height = 15.5,
           rotation = 0,
           visible = true,
@@ -640,9 +666,9 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 463.5,
+          x = 471.5,
           y = 190.5,
-          width = 16,
+          width = 8,
           height = 17.5,
           rotation = 0,
           visible = true,
@@ -668,7 +694,7 @@ return {
           shape = "rectangle",
           x = 0.5,
           y = 144,
-          width = 15.5,
+          width = 7.83333,
           height = 15.5,
           rotation = 0,
           visible = true,

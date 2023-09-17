@@ -1,8 +1,10 @@
 Player=Class{}
-function Player:init(playerx,playery)
+function Player:init()
     
-    self.playerx=playerx
-    self.playery=playery
+    self.x=0
+    self.y=0
+    self.width=7
+    self.height=14
     self.speed=50
     
     
@@ -41,7 +43,7 @@ function Player:update(dt)
     end
     if love.keyboard.isDown('s')  then
         self.vy=self.speed
-        self.playery=self.playery+100*dt
+        
         self.animation=self.animations.downrun
         counter=2
     else
@@ -74,6 +76,6 @@ end
 
 function Player:draw()
 
-    self.animation:draw(self.player_img,self.playerx,self.playery,0,0.5,0.5,32,32)
+    self.animation:draw(self.player_img,self.x,self.y,0,0.5,0.5,32,32)
     
 end
