@@ -35,6 +35,11 @@ function love.load()
     title=love.graphics.newImage("assets/title mainmenu.png")
 
 
+    --sound for games
+    mainmenu_sfx=love.audio.newSource("sounds/mainmenu.mp3","stream")
+    game_sfx=love.audio.newSource("sounds/main game.mp3","stream")
+
+
     world=wf.newWorld(0,0)
     player.collider=world:newBSGRectangleCollider(10,10,10,14,10)
     player.collider:setFixedRotation(true)
@@ -65,6 +70,8 @@ function love.update(dt)
 
 
     if state=="MainMenu" then
+
+        mainmenu_sfx:play()
         
         if love.keyboard.isDown("return") then
             state="Level 1"
@@ -72,6 +79,10 @@ function love.update(dt)
         end
 
     elseif state=="Level 1"  then
+
+        game_sfx:play()
+        mainmenu_sfx:stop()
+        
         player:update(dt)
         cam:lookAt(player.playerx,player.playery)
 
@@ -115,7 +126,7 @@ function love.draw()
     if state=="MainMenu" then
 
         -- love.graphics.draw(mainmenu_bg,-40,0,nil,2.3,2.4)
-        
+
         --title for the game
         love.graphics.draw(title,window_width/2-190,window_height/2-200,nil,0.2,0.2)
 
