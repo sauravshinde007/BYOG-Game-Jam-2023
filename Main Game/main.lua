@@ -23,6 +23,17 @@ function love.load()
    
     gameMap=sti("maps/mainlevel.lua")
 
+    --fonts for the game
+    arabic=love.graphics.newFont("fonts/RamadhanAmazing-jEnDv.ttf")
+
+
+    -- Disable texture filtering for fonts and textures
+    love.graphics.setDefaultFilter("nearest", "nearest")
+
+    --images for game
+    mainmenu_bg=love.graphics.newImage("assets/mainmenu.png")
+    title=love.graphics.newImage("assets/title mainmenu.png")
+
 
     world=wf.newWorld(0,0)
     player.collider=world:newBSGRectangleCollider(10,10,10,14,10)
@@ -102,6 +113,15 @@ function love.draw()
     
 
     if state=="MainMenu" then
+
+        -- love.graphics.draw(mainmenu_bg,-40,0,nil,2.3,2.4)
+        
+        --title for the game
+        love.graphics.draw(title,window_width/2-190,window_height/2-200,nil,0.2,0.2)
+
+
+        -- love.graphics.print("Pyramid Pursuit",window_width/2-130,window_height/2-30,nil,6,6)
+        -- love.graphics.print(text,x,y,r,sx,sy,ox,oy)
 
 
     elseif state=="Level 1" then
